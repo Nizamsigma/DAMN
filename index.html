@@ -519,4 +519,138 @@
 <script>
 const products = [
   // Free Fire
-  {name:"Sg Golden Polosan Super Void", cat:"Free Fire",
+  {name:"Sg Golden Polosan Super Void", cat:"Free Fire", price:"Rp 50k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#0d0304)", desc:"Skin Sg Golden Super Void, akun polosan rapi, cocok upgrade koleksi."},
+  {name:"Sg Rapper Polosan", cat:"Free Fire", price:"Rp 120k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#1a0508)", desc:"Skin Sg Rapper, akun polosan, aman dan siap pakai."},
+  {name:"Sg OPM Polosan", cat:"Free Fire", price:"Rp 300k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#2c0810,#0d0304)", desc:"Skin Sg OPM, akun polosan, kondisi rapi dan fresh."},
+  {name:"Bundle Poker SG Mamba", cat:"Free Fire", price:"Rp 200k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#150406)", desc:"Bundle Poker lengkap dengan Sg Mamba, koleksi kalcer."},
+  {name:"Sg Pelari Kalcer + Set Zamri", cat:"Free Fire", price:"Rp 650k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#241012,#0a0304)", desc:"Sg Pelari kalcer lengkap dengan set Zamri, koleksi premium."},
+  // Mobile Legends
+  {name:"Kolektor Terhormat 3", cat:"Mobile Legends", price:"Rp 160k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#150207)", desc:"Akun kolektor terhormat 3, koleksi skin rapi dan fresh."},
+  {name:"Kof Lengkap", cat:"Mobile Legends", price:"Rp 700k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#2c0810,#0d0304)", desc:"Koleksi Kof lengkap, akun premium siap pakai."},
+  {name:"Imo Idaman", cat:"Mobile Legends", price:"Rp 1,8jt", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#1a0508)", desc:"Akun Imo Idaman, koleksi skin dan hero lengkap, kondisi mulus."},
+  {name:"Ex Honor Sultan", cat:"Mobile Legends", price:"Rp 900k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#2c0810,#120306)", desc:"Akun Ex Honor Sultan, koleksi skin sultan, rapi dan aman."},
+  {name:"Ex Glory Kalcer", cat:"Mobile Legends", price:"Rp 100k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#241012,#0a0304)", desc:"Akun Ex Glory kalcer, cocok buat push rank santai."},
+];
+
+const grid = document.getElementById('grid');
+let activeCat = "Semua";
+let query = "";
+
+function render(){
+  const filtered = products.filter(p=>{
+    const matchCat = activeCat === "Semua" || p.cat === activeCat;
+    const matchQuery = p.name.toLowerCase().includes(query.toLowerCase());
+    return matchCat && matchQuery;
+  });
+
+  if(filtered.length === 0){
+    grid.innerHTML = `<div class="empty-state">Produk tidak ditemukan. Coba kata kunci lain.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p=>`
+    <div class="card ${p.status==='sold' ? 'sold':''}">
+      <div class="card-media" style="background:${p.img}">
+        <div class="badge ${p.status}">${p.status==='ready' ? 'READY STOCK' : 'SOLD OUT'}</div>
+        <div class="cat-chip">${p.cat}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${p.name}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="price-row">
+          <div class="price-now">${p.price}</div>
+          ${p.old ? `<div class="price-old">${p.old}</div>` : ``}
+        </div>
+        ${p.status==='ready'
+          ? `<button class="card-btn" onclick="openOrderModal('${p.name.replace(/'/g,"\\'")}')">Order Sekarang</button>`
+          : `<button class="card-btn" disabled>Sold Out</button>`}
+      </div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('filters').addEventListener('click', e=>{
+  if(!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeCat = e.target.dataset.cat;
+  render();
+});
+
+document.getElementById('searchInput').addEventListener('input', e=>{
+  query = e.target.value;
+  render();
+});
+
+render();
+
+// popup gabung saluran WhatsApp saat halaman dibuka
+const channelOverlay = document.getElementById('channelOverlay');
+if(!sessionStorage.getItem('nks_channel_shown')){
+  setTimeout(()=>{
+    channelOverlay.classList.add('open');
+    sessionStorage.setItem('nks_channel_shown','1');
+  }, 600);
+}
+document.getElementById('closeChannelModal').addEventListener('click', ()=>{
+  channelOverlay.classList.remove('open');
+});
+channelOverlay.addEventListener('click', e=>{
+  if(e.target === channelOverlay) channelOverlay.classList.remove('open');
+});
+const adminBtn = document.getElementById('adminBtn');
+const adminMenu = document.getElementById('adminMenu');
+adminBtn.addEventListener('click', e=>{
+  e.stopPropagation();
+  adminMenu.classList.toggle('open');
+});
+document.addEventListener('click', ()=> adminMenu.classList.remove('open'));
+
+// modal pilih admin saat order produk
+const orderOverlay = document.getElementById('orderOverlay');
+const orderTitle = document.getElementById('orderTitle');
+const admin1Link = document.getElementById('admin1Link');
+const admin2Link = document.getElementById('admin2Link');
+
+function openOrderModal(productName){
+  const text = encodeURIComponent(`Halo admin, saya mau order ${productName}`);
+  orderTitle.textContent = `Order: ${productName}`;
+  admin1Link.href = `https://wa.me/6285166983268?text=${text}`;
+  admin2Link.href = `https://wa.me/6287820357759?text=${text}`;
+  orderOverlay.classList.add('open');
+}
+document.getElementById('closeOrderModal').addEventListener('click', ()=>{
+  orderOverlay.classList.remove('open');
+});
+orderOverlay.addEventListener('click', e=>{
+  if(e.target === orderOverlay) orderOverlay.classList.remove('open');
+});
+
+// sakura petals
+const sakura = document.getElementById('sakura');
+for(let i=0;i<14;i++){
+  const p = document.createElement('div');
+  p.className='petal';
+  const size = 5 + Math.random()*6;
+  p.style.width = size+'px';
+  p.style.height = size+'px';
+  p.style.left = (Math.random()*220)+'px';
+  p.style.top = (Math.random()*40 - 20)+'px';
+  p.style.animationDuration = (5+Math.random()*6)+'s';
+  p.style.animationDelay = (Math.random()*6)+'s';
+  sakura.appendChild(p);
+}
+</script>
+
+</body>
+</html>
