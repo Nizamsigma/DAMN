@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NizamKalcerStore</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#090909;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Background merah */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top left,#ff003c44,transparent 40%),
+    radial-gradient(circle at bottom right,#ff003c33,transparent 35%);
+    z-index:-1;
+}
+
+/* Header */
+header{
+    position:sticky;
+    top:0;
+    background:#111;
+    border-bottom:2px solid #ff003c;
+    padding:18px;
+    text-align:center;
+    box-shadow:0 0 20px #ff003c55;
+}
+
+header h1{
+    color:#ff003c;
+    font-size:32px;
+    text-shadow:0 0 15px #ff003c;
+}
+
+header p{
+    color:#bbb;
+    margin-top:5px;
+}
+
+/* Container */
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:90vh;
+    padding:20px;
+}
+
+/* Card */
+.card{
+    width:350px;
+    background:#151515;
+    border:2px solid #ff003c;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 0 25px rgba(255,0,60,.4);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 35px rgba(255,0,60,.7);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.info{
+    padding:20px;
+}
+
+.status{
+    display:inline-block;
+    background:#00c853;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+    margin-bottom:15px;
+}
+
+.info h2{
+    margin-bottom:10px;
+}
+
+.info p{
+    color:#aaa;
+    margin-bottom:15px;
+}
+
+.price{
+    font-size:28px;
+    color:#ff003c;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:10px;
+    background:#ff003c;
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#d80033;
+    box-shadow:0 0 20px #ff003c;
+}
+
+footer{
+    text-align:center;
+    color:#888;
+    padding:20px;
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<h1>NizamKalcerStore</h1>
+<p>Trusted Game Account Store</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<!-- Ganti gambar ini -->
+<img src="https://i.ibb.co.com/pvyxd4f5/IMG-20260716-WA0132.jpg" alt="SG Golden + Void">
+
+<div class="info">
+
+<span class="status">READY STOCK</span>
+
+<h2>SG Golden + Void Polosan</h2>
+
+<p>Akun Ready Stock Bossku. Login Gmail.</p>
+
+<div class="price">Rp50.000</div>
+
+<button onclick="beli()">
+🛒 BELI SEKARANG
+</button>
+
+</div>
+</div>
+
+</div>
+
+<footer>
+© 2026 NizamKalcerStore
+</footer>
+
+<script>
+function beli(){
+
+const nomor = "6285166983268"; // Ganti dengan nomor WhatsApp kamu
+
+const pesan = encodeURIComponent(
+"Bang mau beli akun SG Golden + Void Polosan 50k"
+);
+
+window.open(
+"https://wa.me/"+nomor+"?text="+pesan,
+"_blank"
+);
+
+}
+</script>
+
+</body>
+</html>
