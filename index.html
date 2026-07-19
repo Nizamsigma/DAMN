@@ -3,193 +3,442 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NizamKalcerStore</title>
-
+<title>NizamKalcerStore | Jual Beli Akun Game</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Bebas+Neue&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-    background:#090909;
-    color:white;
+  :root{
+    --bg:#0a0607;
+    --bg-alt:#120a0b;
+    --card:#1a0e10;
+    --card-line:#3a1418;
+    --red:#e21030;
+    --red-deep:#7a0d1c;
+    --red-glow:#ff2d47;
+    --gold:#f4b93f;
+    --text:#f3e9e6;
+    --text-dim:#b3928f;
+    --green:#2fae5c;
+    --gray:#5a4a4d;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
-}
+  }
+  .display{font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:.5px;}
+  .brand-font{font-family:'Bebas Neue',sans-serif;letter-spacing:2px;}
 
-/* Background merah */
-body::before{
+  /* subtle texture */
+  body::before{
     content:"";
-    position:fixed;
-    inset:0;
+    position:fixed;inset:0;
     background:
-    radial-gradient(circle at top left,#ff003c44,transparent 40%),
-    radial-gradient(circle at bottom right,#ff003c33,transparent 35%);
-    z-index:-1;
-}
+      radial-gradient(circle at 15% 10%, rgba(226,16,48,.10), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(226,16,48,.08), transparent 45%);
+    pointer-events:none;
+    z-index:0;
+  }
 
-/* Header */
-header{
-    position:sticky;
-    top:0;
-    background:#111;
-    border-bottom:2px solid #ff003c;
-    padding:18px;
-    text-align:center;
-    box-shadow:0 0 20px #ff003c55;
-}
-
-header h1{
-    color:#ff003c;
-    font-size:32px;
-    text-shadow:0 0 15px #ff003c;
-}
-
-header p{
-    color:#bbb;
-    margin-top:5px;
-}
-
-/* Container */
-.container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:90vh;
-    padding:20px;
-}
-
-/* Card */
-.card{
-    width:350px;
-    background:#151515;
-    border:2px solid #ff003c;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 0 25px rgba(255,0,60,.4);
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-8px);
-    box-shadow:0 0 35px rgba(255,0,60,.7);
-}
-
-.card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-}
-
-.info{
-    padding:20px;
-}
-
-.status{
-    display:inline-block;
-    background:#00c853;
-    color:white;
-    padding:6px 12px;
-    border-radius:20px;
-    font-size:13px;
-    margin-bottom:15px;
-}
-
-.info h2{
-    margin-bottom:10px;
-}
-
-.info p{
-    color:#aaa;
-    margin-bottom:15px;
-}
-
-.price{
-    font-size:28px;
-    color:#ff003c;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-button{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:10px;
-    background:#ff003c;
-    color:white;
-    font-size:18px;
-    font-weight:bold;
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,6,7,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--card-line);
+  }
+  .header-inner{
+    max-width:1100px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:10px;
+  }
+  .logo-mark{
+    width:38px;height:38px;
+    background:linear-gradient(135deg,var(--red),var(--red-deep));
+    clip-path:polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;
+    box-shadow:0 0 14px rgba(226,16,48,.6);
+    flex-shrink:0;
+  }
+  .logo-text{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1.5px;color:#fff;line-height:1;}
+  .logo-text span{color:var(--red-glow);}
+  .header-cta{
+    background:var(--red);
+    color:#fff;border:none;
+    padding:9px 18px;
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;
+    letter-spacing:.5px;
+    clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
     cursor:pointer;
-    transition:.3s;
-}
+    text-decoration:none;
+    display:inline-block;
+  }
 
-button:hover{
-    background:#d80033;
-    box-shadow:0 0 20px #ff003c;
-}
+  /* ---------- HERO / ANIME BANNER ---------- */
+  .hero{
+    position:relative;
+    max-width:1100px;margin:22px auto 0;
+    padding:0 20px;
+    z-index:1;
+  }
+  .hero-banner{
+    position:relative;
+    border-radius:14px;
+    overflow:hidden;
+    height:340px;
+    border:1px solid var(--card-line);
+    background-size:cover;
+    background-position:center;
+    background-color:#17040a;
+    box-shadow:0 0 60px rgba(226,16,48,.18);
+  }
+  /* overlay merah-hitam di atas foto banner supaya tetap senada sama tema web */
+  .hero-banner::after{
+    content:"";
+    position:absolute;inset:0;z-index:2;
+    background:
+      radial-gradient(circle at 78% 30%, rgba(244,185,63,.20), transparent 40%),
+      linear-gradient(150deg, rgba(28,3,8,.55) 0%, rgba(58,4,16,.55) 35%, rgba(5,2,3,.75) 100%);
+    pointer-events:none;
+  }
+  /* moon */
+  .moon{
+    position:absolute;top:38px;right:70px;
+    width:120px;height:120px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff3d6, var(--gold) 60%, #b8791f 100%);
+    box-shadow:0 0 70px 14px rgba(244,185,63,.55);
+  }
+  /* sakura branch (svg) sits top-left */
+  .sakura{position:absolute;top:-10px;left:-10px;width:230px;opacity:.9;}
+  .petal{position:absolute;border-radius:50% 0 50% 50%;background:rgba(255,150,170,.55);animation:fall linear infinite;}
+  @keyframes fall{
+    0%{transform:translateY(-20px) rotate(0deg);opacity:0;}
+    10%{opacity:.9;}
+    100%{transform:translateY(360px) rotate(260deg);opacity:0;}
+  }
+  /* katana slash streak */
+  .slash{
+    position:absolute;
+    top:-20%;left:20%;
+    width:3px;height:150%;
+    background:linear-gradient(180deg, transparent, var(--red-glow) 40%, #fff 50%, var(--red-glow) 60%, transparent);
+    transform:rotate(24deg);
+    filter:blur(.3px);
+    box-shadow:0 0 22px 3px rgba(255,45,71,.7);
+    opacity:.85;
+  }
+  /* silhouette figure made from shapes */
+  .silhouette{
+    position:absolute;bottom:0;right:8%;
+    width:150px;height:270px;
+  }
+  .silhouette .head{position:absolute;top:0;left:45px;width:60px;height:60px;border-radius:50%;background:#050203;}
+  .silhouette .hair{position:absolute;top:-6px;left:32px;width:86px;height:70px;border-radius:50% 50% 40% 40%;background:#050203;}
+  .silhouette .body{position:absolute;top:52px;left:20px;width:110px;height:150px;border-radius:40% 40% 10% 10%;background:linear-gradient(180deg,#050203,#0d0304);}
+  .silhouette .blade{
+    position:absolute;top:20px;left:-30px;width:170px;height:6px;
+    background:linear-gradient(90deg,transparent,#eaeaea,#fff);
+    transform:rotate(-38deg);
+    box-shadow:0 0 12px 2px rgba(255,255,255,.6);
+  }
+  .hero-content{
+    position:relative;z-index:3;
+    height:100%;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 34px;
+  }
+  .hero-eyebrow{
+    font-family:'Rajdhani',sans-serif;font-weight:700;
+    font-size:12px;letter-spacing:4px;color:var(--gold);
+    margin-bottom:8px;
+  }
+  .hero-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:56px;line-height:.95;color:#fff;
+    letter-spacing:2px;
+    text-shadow:0 0 22px rgba(226,16,48,.8), 0 0 4px #fff;
+    animation:flicker 5s infinite;
+  }
+  @keyframes flicker{
+    0%,19%,21%,23%,54%,56%,100%{text-shadow:0 0 22px rgba(226,16,48,.8), 0 0 4px #fff;}
+    20%,22%,55%{text-shadow:0 0 8px rgba(226,16,48,.4);}
+  }
+  .hero-title .accent{color:var(--red-glow);}
+  .hero-sub{
+    margin-top:12px;
+    font-family:'Rajdhani',sans-serif;font-weight:600;
+    font-size:15px;color:var(--text-dim);
+    max-width:320px;
+  }
+  .hero-tags{display:flex;gap:8px;margin-top:16px;}
+  .hero-tag{
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;
+    color:#fff;background:rgba(226,16,48,.18);
+    border:1px solid var(--red);
+    padding:5px 12px;border-radius:20px;letter-spacing:.5px;
+  }
 
-footer{
+  /* ---------- SEARCH + FILTER ---------- */
+  .toolbar{max-width:1100px;margin:26px auto 0;padding:0 20px;position:relative;z-index:1;}
+  .search-box{
+    width:100%;
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:12px;
+    padding:14px 18px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;font-size:15px;
+    outline:none;
+  }
+  .search-box::placeholder{color:var(--text-dim);}
+  .search-box:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(226,16,48,.15);}
+
+  .filters{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  .filter-btn{
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14.5px;
+    padding:10px 20px;border-radius:24px;
+    border:1px solid var(--card-line);
+    background:var(--card);color:var(--text-dim);
+    cursor:pointer;letter-spacing:.3px;
+    transition:.15s;
+  }
+  .filter-btn:hover{border-color:var(--red);color:#fff;}
+  .filter-btn.active{
+    background:linear-gradient(135deg,var(--red),var(--red-deep));
+    color:#fff;border-color:transparent;
+    box-shadow:0 0 16px rgba(226,16,48,.45);
+  }
+
+  /* ---------- PRODUCT GRID ---------- */
+  .grid{
+    max-width:1100px;margin:24px auto 60px;padding:0 20px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+    position:relative;z-index:1;
+  }
+  @media(max-width:640px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:14px;
+    overflow:hidden;
+    display:flex;flex-direction:column;
+    transition:.2s transform, .2s box-shadow, .2s border-color;
+  }
+  .card:hover{transform:translateY(-3px);border-color:var(--red);box-shadow:0 10px 30px rgba(226,16,48,.15);}
+
+  .card-media{
+    position:relative;
+    height:170px;
+    background-size:cover;background-position:center;
+  }
+  .card.sold .card-media{filter:grayscale(1) brightness(.55);}
+  .badge{
+    position:absolute;top:12px;left:0;
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:.5px;
+    color:#fff;padding:6px 16px 6px 12px;
+    clip-path:polygon(0 0,100% 0,88% 100%,0% 100%);
+  }
+  .badge.ready{background:var(--green);}
+  .badge.sold{background:var(--gray);}
+  .cat-chip{
+    position:absolute;bottom:10px;right:10px;
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;
+    background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);
+    color:var(--gold);padding:3px 10px;border-radius:6px;letter-spacing:.5px;
+  }
+  .card-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .card-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:17px;color:#fff;}
+  .card-desc{font-size:12.5px;color:var(--text-dim);line-height:1.4;flex:1;}
+  .price-row{display:flex;align-items:baseline;gap:8px;margin-top:2px;}
+  .price-now{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:19px;color:var(--gold);}
+  .price-old{font-size:12.5px;color:#7d6264;text-decoration:line-through;}
+  .card-btn{
+    margin-top:8px;
     text-align:center;
-    color:#888;
-    padding:20px;
-}
-</style>
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:.4px;
+    padding:10px;border-radius:8px;
+    background:linear-gradient(135deg,var(--red),var(--red-deep));
+    color:#fff;text-decoration:none;
+    border:none;cursor:pointer;
+  }
+  .card.sold .card-btn{
+    background:#2a1f21;color:#7d6a6c;cursor:not-allowed;
+  }
 
+  .empty-state{
+    grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--text-dim);
+    font-family:'Rajdhani',sans-serif;font-size:16px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--card-line);
+    padding:26px 20px 40px;text-align:center;
+    color:var(--text-dim);font-size:13px;
+    position:relative;z-index:1;
+  }
+  footer .fbrand{font-family:'Bebas Neue',sans-serif;color:#fff;letter-spacing:1.5px;font-size:16px;margin-bottom:6px;}
+
+  /* floating WA */
+  .wa-float{
+    position:fixed;bottom:20px;right:20px;z-index:60;
+    width:54px;height:54px;border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.5);
+    text-decoration:none;
+  }
+  .wa-float svg{width:26px;height:26px;fill:#fff;}
+</style>
 </head>
 <body>
 
 <header>
-<h1>NizamKalcerStore</h1>
-<p>Trusted Game Account Store</p>
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">N</div>
+      <div class="logo-text">NIZAM<span>KALCER</span>STORE</div>
+    </div>
+    <a href="https://wa.me/6281234567890" class="header-cta">Hubungi Admin</a>
+  </div>
 </header>
 
-<div class="container">
-
-<div class="card">
-
-<!-- Ganti gambar ini -->
-<img src="https://i.ibb.co.com/pvyxd4f5/IMG-20260716-WA0132.jpg" alt="SG Golden + Void">
-
-<div class="info">
-
-<span class="status">READY STOCK</span>
-
-<h2>SG Golden + Void Polosan</h2>
-
-<p>Akun Ready Stock Bossku. Login Gmail.</p>
-
-<div class="price">Rp50.000</div>
-
-<button onclick="beli()">
-🛒 BELI SEKARANG
-</button>
-
-</div>
+<div class="hero">
+  <!-- GANTI URL DI BAWAH INI DENGAN LINK IMGBB KAMU (klik kanan gambar di imgbb > copy image address) -->
+  <div class="hero-banner" style="background-image:url('https://i.ibb.co.com/d4r8zrzr/1570196f750f2f1a2bac993a13ec47f9.jpg');">
+    <div class="slash"></div>
+    <div class="sakura" id="sakura"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">WELCOME TO NizamKalcerStore</div>
+      <div class="hero-title">NIZAM<span class="accent">KALCER</span><br>STORE</div>
+      <div class="hero-sub">Stock fresh & aman. Jual beli akun Mobile Legends & Free Fire terpercaya.</div>
+      <div class="hero-tags">
+        <div class="hero-tag">FAST RESPON</div>
+        <div class="hero-tag">GARANSI 7 HARI</div>
+      </div>
+    </div>
+  </div>
 </div>
 
+<div class="toolbar">
+  <input type="text" class="search-box" id="searchInput" placeholder="Cari produk...">
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-cat="Semua">Semua</button>
+    <button class="filter-btn" data-cat="Mobile Legends">Mobile Legends</button>
+    <button class="filter-btn" data-cat="Free Fire">Free Fire</button>
+  </div>
 </div>
+
+<div class="grid" id="grid"></div>
 
 <footer>
-© 2026 NizamKalcerStore
+  <div class="fbrand">NIZAMKALCERSTORE</div>
+  © 2026 NizamKalcerStore — Transaksi aman, stock fresh setiap hari.
 </footer>
 
+<a class="wa-float" href="https://wa.me/6285166983268" target="_blank" aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3 17.7L2 22l4.4-1.1A11 11 0 1 0 20.5 3.5ZM12 20.1a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-2.6.7.7-2.5-.2-.3A8.1 8.1 0 1 1 12 20.1Zm4.4-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1Z"/></svg>
+</a>
+
 <script>
-function beli(){
+const products = [
+  // Free Fire
+  {name:"Sg Golden Polosan Super Void", cat:"Free Fire", price:"Rp 50k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#0d0304)", desc:"Skin Sg Golden Super Void, akun polosan rapi, cocok upgrade koleksi."},
+  {name:"Sg Rapper Polosan", cat:"Free Fire", price:"Rp 120k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#1a0508)", desc:"Skin Sg Rapper, akun polosan, aman dan siap pakai."},
+  {name:"Sg OPM Polosan", cat:"Free Fire", price:"Rp 300k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#2c0810,#0d0304)", desc:"Skin Sg OPM, akun polosan, kondisi rapi dan fresh."},
+  {name:"Bundle Poker SG Mamba", cat:"Free Fire", price:"Rp 200k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#150406)", desc:"Bundle Poker lengkap dengan Sg Mamba, koleksi kalcer."},
+  {name:"Sg Pelari Kalcer + Set Zamri", cat:"Free Fire", price:"Rp 650k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#241012,#0a0304)", desc:"Sg Pelari kalcer lengkap dengan set Zamri, koleksi premium."},
+  // Mobile Legends
+  {name:"Kolektor Terhormat 3", cat:"Mobile Legends", price:"Rp 160k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#150207)", desc:"Akun kolektor terhormat 3, koleksi skin rapi dan fresh."},
+  {name:"Kof Lengkap", cat:"Mobile Legends", price:"Rp 700k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#2c0810,#0d0304)", desc:"Koleksi Kof lengkap, akun premium siap pakai."},
+  {name:"Imo Idaman", cat:"Mobile Legends", price:"Rp 1,8jt", old:"", status:"ready",
+   img:"linear-gradient(135deg,#3a0410,#1a0508)", desc:"Akun Imo Idaman, koleksi skin dan hero lengkap, kondisi mulus."},
+  {name:"Ex Honor Sultan", cat:"Mobile Legends", price:"Rp 900k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#2c0810,#120306)", desc:"Akun Ex Honor Sultan, koleksi skin sultan, rapi dan aman."},
+  {name:"Ex Glory Kalcer", cat:"Mobile Legends", price:"Rp 100k", old:"", status:"ready",
+   img:"linear-gradient(135deg,#241012,#0a0304)", desc:"Akun Ex Glory kalcer, cocok buat push rank santai."},
+];
 
-const nomor = "6285166983268"; // Ganti dengan nomor WhatsApp lu
+const grid = document.getElementById('grid');
+let activeCat = "Semua";
+let query = "";
 
-const pesan = encodeURIComponent(
-"Bang mau beli akun SG Golden + Void Polosan 50k"
-);
+function render(){
+  const filtered = products.filter(p=>{
+    const matchCat = activeCat === "Semua" || p.cat === activeCat;
+    const matchQuery = p.name.toLowerCase().includes(query.toLowerCase());
+    return matchCat && matchQuery;
+  });
 
-window.open(
-"https://wa.me/"+nomor+"?text="+pesan,
-"_blank"
-);
+  if(filtered.length === 0){
+    grid.innerHTML = `<div class="empty-state">Produk tidak ditemukan. Coba kata kunci lain.</div>`;
+    return;
+  }
 
+  grid.innerHTML = filtered.map(p=>`
+    <div class="card ${p.status==='sold' ? 'sold':''}">
+      <div class="card-media" style="background:${p.img}">
+        <div class="badge ${p.status}">${p.status==='ready' ? 'READY STOCK' : 'SOLD OUT'}</div>
+        <div class="cat-chip">${p.cat}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-title">${p.name}</div>
+        <div class="card-desc">${p.desc}</div>
+        <div class="price-row">
+          <div class="price-now">${p.price}</div>
+          ${p.old ? `<div class="price-old">${p.old}</div>` : ``}
+        </div>
+        ${p.status==='ready'
+          ? `<a class="card-btn" href="https://wa.me/6285166983268?text=Halo%20admin%2C%20saya%20mau%20order%20${encodeURIComponent(p.name)}" target="_blank">Order Sekarang</a>`
+          : `<button class="card-btn" disabled>Sold Out</button>`}
+      </div>
+    </div>
+  `).join('');
+}
+
+document.getElementById('filters').addEventListener('click', e=>{
+  if(!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  activeCat = e.target.dataset.cat;
+  render();
+});
+
+document.getElementById('searchInput').addEventListener('input', e=>{
+  query = e.target.value;
+  render();
+});
+
+render();
+
+// sakura petals
+const sakura = document.getElementById('sakura');
+for(let i=0;i<14;i++){
+  const p = document.createElement('div');
+  p.className='petal';
+  const size = 5 + Math.random()*6;
+  p.style.width = size+'px';
+  p.style.height = size+'px';
+  p.style.left = (Math.random()*220)+'px';
+  p.style.top = (Math.random()*40 - 20)+'px';
+  p.style.animationDuration = (5+Math.random()*6)+'s';
+  p.style.animationDelay = (Math.random()*6)+'s';
+  sakura.appendChild(p);
 }
 </script>
 
