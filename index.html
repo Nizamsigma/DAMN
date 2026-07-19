@@ -77,9 +77,144 @@
     letter-spacing:.5px;
     clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
     cursor:pointer;
-    text-decoration:none;
     display:inline-block;
+    position:relative;
   }
+  .admin-dropdown{
+    position:relative;
+  }
+  .admin-menu{
+    display:none;
+    position:absolute;top:calc(100% + 8px);right:0;
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:10px;
+    overflow:hidden;
+    min-width:170px;
+    box-shadow:0 10px 30px rgba(0,0,0,.5);
+    z-index:70;
+  }
+  .admin-menu.open{display:block;}
+  .admin-menu a{
+    display:block;
+    padding:12px 16px;
+    color:var(--text);text-decoration:none;
+    font-family:'Rajdhani',sans-serif;font-weight:600;font-size:14px;
+    border-bottom:1px solid var(--card-line);
+  }
+  .admin-menu a:last-child{border-bottom:none;}
+  .admin-menu a:hover{background:rgba(226,16,48,.15);color:#fff;}
+  .admin-menu a span{display:block;font-size:11.5px;color:var(--text-dim);margin-top:2px;}
+
+  /* modal pilih admin saat order produk */
+  .order-overlay{
+    display:none;
+    position:fixed;inset:0;z-index:80;
+    background:rgba(0,0,0,.6);
+    align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .order-overlay.open{display:flex;}
+  .order-modal{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:14px;
+    max-width:340px;width:100%;
+    padding:22px;
+    text-align:center;
+  }
+  .order-modal h3{
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:18px;color:#fff;margin-bottom:6px;
+  }
+  .order-modal p{font-size:13px;color:var(--text-dim);margin-bottom:18px;}
+  .order-modal a{
+    display:block;
+    padding:12px;margin-bottom:10px;
+    border-radius:8px;
+    background:linear-gradient(135deg,var(--red),var(--red-deep));
+    color:#fff;text-decoration:none;
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14.5px;
+  }
+  .order-modal .close-btn{
+    background:none;border:1px solid var(--card-line);
+    color:var(--text-dim);
+    padding:10px;border-radius:8px;
+    width:100%;cursor:pointer;
+    font-family:'Rajdhani',sans-serif;font-weight:600;font-size:13.5px;
+  }
+
+  /* ---------- POPUP SALURAN WHATSAPP ---------- */
+  .channel-overlay{
+    display:none;
+    position:fixed;inset:0;z-index:100;
+    background:rgba(5,2,3,.78);
+    backdrop-filter:blur(6px);
+    align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .channel-overlay.open{display:flex;}
+  .channel-modal{
+    position:relative;
+    width:100%;max-width:340px;
+    background:linear-gradient(165deg,#1c0810 0%,#120608 60%,#0a0405 100%);
+    border:1px solid var(--card-line);
+    border-radius:20px;
+    padding:32px 26px 26px;
+    text-align:center;
+    box-shadow:0 0 0 1px rgba(226,16,48,.15), 0 20px 60px rgba(0,0,0,.6), 0 0 60px rgba(226,16,48,.15);
+    animation:popIn .35s cubic-bezier(.2,.9,.3,1.3);
+  }
+  @keyframes popIn{
+    0%{transform:scale(.85);opacity:0;}
+    100%{transform:scale(1);opacity:1;}
+  }
+  .channel-modal::before{
+    content:"";
+    position:absolute;inset:0;border-radius:20px;
+    background:radial-gradient(circle at 50% 0%, rgba(226,16,48,.25), transparent 60%);
+    pointer-events:none;
+  }
+  .channel-icon{
+    width:74px;height:74px;margin:0 auto 18px;
+    border-radius:20px;
+    background:linear-gradient(150deg,var(--red-glow),var(--red-deep));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 30px rgba(226,16,48,.55), inset 0 1px 0 rgba(255,255,255,.15);
+    position:relative;
+  }
+  .channel-icon svg{width:34px;height:34px;fill:#fff;}
+  .channel-title{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:24px;letter-spacing:1.5px;color:#fff;
+    margin-bottom:10px;
+    text-shadow:0 0 18px rgba(226,16,48,.6);
+  }
+  .channel-text{
+    font-family:'Rajdhani',sans-serif;font-weight:500;font-size:14.5px;
+    color:var(--text-dim);line-height:1.5;
+    margin-bottom:22px;
+    position:relative;
+  }
+  .channel-text b{color:var(--gold);font-weight:700;}
+  .channel-join{
+    display:block;width:100%;
+    padding:14px;border-radius:12px;
+    background:linear-gradient(135deg,var(--red),var(--red-deep));
+    color:#fff;text-decoration:none;
+    font-family:'Rajdhani',sans-serif;font-weight:700;font-size:15.5px;letter-spacing:.5px;
+    box-shadow:0 8px 24px rgba(226,16,48,.4);
+    margin-bottom:12px;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+  }
+  .channel-join svg{width:18px;height:18px;fill:#fff;}
+  .channel-close{
+    background:none;border:1px solid var(--card-line);
+    color:var(--text-dim);
+    padding:11px;border-radius:12px;
+    width:100%;cursor:pointer;
+    font-family:'Rajdhani',sans-serif;font-weight:600;font-size:14px;
+  }
+  .channel-close:hover{color:#fff;border-color:var(--red);}
 
   /* ---------- HERO / ANIME BANNER ---------- */
   .hero{
@@ -307,22 +442,28 @@
       <div class="logo-mark">N</div>
       <div class="logo-text">NIZAM<span>KALCER</span>STORE</div>
     </div>
-    <a href="https://wa.me/6285166983268" class="header-cta">Hubungi Admin</a>
+    <div class="admin-dropdown">
+      <button class="header-cta" id="adminBtn">Hubungi Admin</button>
+      <div class="admin-menu" id="adminMenu">
+        <a href="https://wa.me/6285166983268" target="_blank">Admin 1<span>0851-6698-3268</span></a>
+        <a href="https://wa.me/6287820357759" target="_blank">Admin 2<span>0878-2035-7759</span></a>
+      </div>
+    </div>
   </div>
 </header>
 
 <div class="hero">
   <!-- GANTI URL DI BAWAH INI DENGAN LINK IMGBB KAMU (klik kanan gambar di imgbb > copy image address) -->
-  <div class="hero-banner" style="background-image:url('https://i.ibb.co.com/d4r8zrzr/1570196f750f2f1a2bac993a13ec47f9.jpg');">
+  <div class="hero-banner" style="background-image:url('https://i.ibb.co/GANTI-DENGAN-LINK-GAMBAR-KAMU.jpg');">
     <div class="slash"></div>
     <div class="sakura" id="sakura"></div>
     <div class="hero-content">
-      <div class="hero-eyebrow">WELCOME TO NizamKalcerStore</div>
+      <div class="hero-eyebrow">WELCOME TO MY STORE</div>
       <div class="hero-title">NIZAM<span class="accent">KALCER</span><br>STORE</div>
       <div class="hero-sub">Stock fresh & aman. Jual beli akun Mobile Legends & Free Fire terpercaya.</div>
       <div class="hero-tags">
         <div class="hero-tag">FAST RESPON</div>
-        <div class="hero-tag">GARANSI 7 HARI</div>
+        <div class="hero-tag">GARANSI FULL</div>
       </div>
     </div>
   </div>
@@ -348,99 +489,34 @@
   <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3 17.7L2 22l4.4-1.1A11 11 0 1 0 20.5 3.5ZM12 20.1a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-2.6.7.7-2.5-.2-.3A8.1 8.1 0 1 1 12 20.1Zm4.4-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1Z"/></svg>
 </a>
 
+<!-- POPUP GABUNG SALURAN WHATSAPP -->
+<div class="channel-overlay" id="channelOverlay">
+  <div class="channel-modal">
+    <div class="channel-icon">
+      <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3 17.7L2 22l4.4-1.1A11 11 0 1 0 20.5 3.5ZM12 20.1a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-2.6.7.7-2.5-.2-.3A8.1 8.1 0 1 1 12 20.1Zm4.4-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1Z"/></svg>
+    </div>
+    <div class="channel-title">NIZAMKALCERSTORE</div>
+    <div class="channel-text">Gabung ke saluran WhatsApp <b>NizamKalcerStore</b> biar dapat info stok terbaru bosku!</div>
+    <!-- GANTI LINK DI BAWAH DENGAN LINK SALURAN WHATSAPP KAMU -->
+    <a class="channel-join" href="https://whatsapp.com/channel/0029Vb6EAo5ADTOKcWZajx24" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3 17.7L2 22l4.4-1.1A11 11 0 1 0 20.5 3.5ZM12 20.1a8.1 8.1 0 0 1-4.1-1.1l-.3-.2-2.6.7.7-2.5-.2-.3A8.1 8.1 0 1 1 12 20.1Zm4.4-6.1c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.1-.3.2-.5.1-.2-.1-1-.4-2-1.2-.7-.7-1.2-1.5-1.4-1.7-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1 0-.3 0-.4-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.5.2 1 .4 1.3.5.5.2 1 .1 1.4.1.4-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1Z"/></svg>
+      Gabung Saluran
+    </a>
+    <button class="channel-close" id="closeChannelModal">Tutup</button>
+  </div>
+</div>
+
+<div class="order-overlay" id="orderOverlay">
+  <div class="order-modal">
+    <h3 id="orderTitle">Pilih Admin</h3>
+    <p>Chat admin untuk order produk ini</p>
+    <a href="#" id="admin1Link" target="_blank">Admin 1 — 0851-6698-3268</a>
+    <a href="#" id="admin2Link" target="_blank">Admin 2 — 0878-2035-7759</a>
+    <button class="close-btn" id="closeOrderModal">Batal</button>
+  </div>
+</div>
+
 <script>
 const products = [
   // Free Fire
-  {name:"Sg Golden Polosan Super Void", cat:"Free Fire", price:"Rp 50k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#3a0410,#0d0304)", desc:"Skin Sg Golden Super Void, akun polosan rapi, cocok upgrade koleksi."},
-  {name:"Sg Rapper Polosan", cat:"Free Fire", price:"Rp 120k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#3a0410,#1a0508)", desc:"Skin Sg Rapper, akun polosan, aman dan siap pakai."},
-  {name:"Sg OPM Polosan", cat:"Free Fire", price:"Rp 300k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#2c0810,#0d0304)", desc:"Skin Sg OPM, akun polosan, kondisi rapi dan fresh."},
-  {name:"Bundle Poker SG Mamba", cat:"Free Fire", price:"Rp 200k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#3a0410,#150406)", desc:"Bundle Poker lengkap dengan Sg Mamba, koleksi kalcer."},
-  {name:"Sg Pelari Kalcer + Set Zamri", cat:"Free Fire", price:"Rp 650k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#241012,#0a0304)", desc:"Sg Pelari kalcer lengkap dengan set Zamri, koleksi premium."},
-  // Mobile Legends
-  {name:"Kolektor Terhormat 3", cat:"Mobile Legends", price:"Rp 160k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#3a0410,#150207)", desc:"Akun kolektor terhormat 3, koleksi skin rapi dan fresh."},
-  {name:"Kof Lengkap", cat:"Mobile Legends", price:"Rp 700k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#2c0810,#0d0304)", desc:"Koleksi Kof lengkap, akun premium siap pakai."},
-  {name:"Imo Idaman", cat:"Mobile Legends", price:"Rp 1,8jt", old:"", status:"ready",
-   img:"linear-gradient(135deg,#3a0410,#1a0508)", desc:"Akun Imo Idaman, koleksi skin dan hero lengkap, kondisi mulus."},
-  {name:"Ex Honor Sultan", cat:"Mobile Legends", price:"Rp 900k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#2c0810,#120306)", desc:"Akun Ex Honor Sultan, koleksi skin sultan, rapi dan aman."},
-  {name:"Ex Glory Kalcer", cat:"Mobile Legends", price:"Rp 100k", old:"", status:"ready",
-   img:"linear-gradient(135deg,#241012,#0a0304)", desc:"Akun Ex Glory kalcer, cocok buat push rank santai."},
-];
-
-const grid = document.getElementById('grid');
-let activeCat = "Semua";
-let query = "";
-
-function render(){
-  const filtered = products.filter(p=>{
-    const matchCat = activeCat === "Semua" || p.cat === activeCat;
-    const matchQuery = p.name.toLowerCase().includes(query.toLowerCase());
-    return matchCat && matchQuery;
-  });
-
-  if(filtered.length === 0){
-    grid.innerHTML = `<div class="empty-state">Produk tidak ditemukan. Coba kata kunci lain.</div>`;
-    return;
-  }
-
-  grid.innerHTML = filtered.map(p=>`
-    <div class="card ${p.status==='sold' ? 'sold':''}">
-      <div class="card-media" style="background:${p.img}">
-        <div class="badge ${p.status}">${p.status==='ready' ? 'READY STOCK' : 'SOLD OUT'}</div>
-        <div class="cat-chip">${p.cat}</div>
-      </div>
-      <div class="card-body">
-        <div class="card-title">${p.name}</div>
-        <div class="card-desc">${p.desc}</div>
-        <div class="price-row">
-          <div class="price-now">${p.price}</div>
-          ${p.old ? `<div class="price-old">${p.old}</div>` : ``}
-        </div>
-        ${p.status==='ready'
-          ? `<a class="card-btn" href="https://wa.me/6285166983268?text=Halo%20admin%2C%20saya%20mau%20order%20${encodeURIComponent(p.name)}" target="_blank">Order Sekarang</a>`
-          : `<button class="card-btn" disabled>Sold Out</button>`}
-      </div>
-    </div>
-  `).join('');
-}
-
-document.getElementById('filters').addEventListener('click', e=>{
-  if(!e.target.classList.contains('filter-btn')) return;
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  e.target.classList.add('active');
-  activeCat = e.target.dataset.cat;
-  render();
-});
-
-document.getElementById('searchInput').addEventListener('input', e=>{
-  query = e.target.value;
-  render();
-});
-
-render();
-
-// sakura petals
-const sakura = document.getElementById('sakura');
-for(let i=0;i<14;i++){
-  const p = document.createElement('div');
-  p.className='petal';
-  const size = 5 + Math.random()*6;
-  p.style.width = size+'px';
-  p.style.height = size+'px';
-  p.style.left = (Math.random()*220)+'px';
-  p.style.top = (Math.random()*40 - 20)+'px';
-  p.style.animationDuration = (5+Math.random()*6)+'s';
-  p.style.animationDelay = (Math.random()*6)+'s';
-  sakura.appendChild(p);
-}
-</script>
-
-</body>
-</html>
+  {name:"Sg Golden Polosan Super Void", cat:"Free Fire",
